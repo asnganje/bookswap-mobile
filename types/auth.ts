@@ -3,11 +3,12 @@ export interface User {
   fullname: string;
   email: string;
   password: string;
-  token?: string;
 }
 
 export interface AuthState {
-  user: User;
+  user: User | null;
   loading: boolean;
+  token?: string | null;
   error: string | null
+  msg: string
 }
