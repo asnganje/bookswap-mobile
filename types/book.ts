@@ -9,7 +9,7 @@ export interface Book {
 
 export interface BookState {
   books: Book [],
-  selectedBook: null,
+  selectedBook: Book | null,
   loading: boolean,
   error: string | null
 }
