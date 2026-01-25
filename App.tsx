@@ -1,11 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import { View } from 'react-native';
-import AppNavigator from './app/AppNavigator';
 import { Provider } from 'react-redux';
 import store from './store';
 import { useEffect, useState } from 'react';
 import { loadStoredUser } from './store/thunks/authThunk';
 import LoadingUI from './components/UI/Loading';
+import RootNavigator from './app/RootNavigator';
 
 export default function App() {
   const [ready, setReady] =useState(false)
@@ -26,7 +26,7 @@ export default function App() {
     <Provider store={store}>
       <View>
         <StatusBar style="auto" />
-        <AppNavigator />
+        <RootNavigator />
       </View>
     </Provider>
   );
