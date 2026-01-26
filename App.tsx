@@ -24,7 +24,7 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <View>
+      <View style={{flex: 1}}>
         <StatusBar style="auto" />
         <RootNavigator />
       </View>

@@ -3,14 +3,15 @@ import { useSelector } from 'react-redux';
 import { RootState } from "../store";
 import AppNavigator from "./AppNavigator";
 import AuthNavigator from "./AuthNavigator";
+import { NavigationContainer } from "@react-navigation/native";
 
 
 function RootNavigator() {
   const { token } = useSelector((state: RootState)=>state.auth)
   return (
-    <View>
+    <NavigationContainer>
       { token ? <AppNavigator /> : <AuthNavigator/> }
-    </View>
+    </NavigationContainer>
   )  
 }
 
