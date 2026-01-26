@@ -17,7 +17,7 @@ function LoginScreen({navigation}: Props) {
   const passwordVisibilityToggler = () => setPasswordVisible((prev)=> !prev)
 
   function switchToRegister() {
-    navigation.navigate("Register")
+    navigation.replace("Register")
   }
   return(
     <View style={styles.container}>

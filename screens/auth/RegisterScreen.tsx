@@ -19,7 +19,7 @@ function RegisterScreen({navigation}: Props) {
   const confirmPasswordIsVisibleToggler = () => setConfirmPasswordVisible((prev)=> !prev)
 
   function switchLogin(){
-    navigation.navigate("Login")
+    navigation.replace("Login")
   }
   return(
     <View style={styles.container}>
