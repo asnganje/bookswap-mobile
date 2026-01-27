@@ -6,5 +6,6 @@ export const Styles = {
   primary400: "#D1D5DB",
   primary500:"#FFFFFF",
   primary600:"#2563EB",
-  primary700:"#da6582"
+  primary700:"#da6582",
+  primary800:"#ff4444"
 }
