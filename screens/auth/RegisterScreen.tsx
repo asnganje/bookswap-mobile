@@ -136,7 +136,7 @@ function RegisterScreen({navigation}: Props) {
         </TouchableButton>
       </View>
       <TouchableButton onPress={registrationSubmitHandler}>
-        {loading? <LoadingUI /> : <Text style={styles.buttonText}>Register</Text>}
+        {loading? <LoadingUI color="#FFF"/> : <Text style={styles.buttonText}>Register</Text>}
       </TouchableButton>
       <TouchableButton onPress={switchLogin}>
         <Text style={styles.buttonText}>Already have an account? Login</Text>
