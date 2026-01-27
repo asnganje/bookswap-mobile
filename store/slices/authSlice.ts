@@ -40,6 +40,9 @@ const authSlice = createSlice({
       state.user = action.payload.user;
       state.token = action.payload.token;
     })
+    .addCase(loginUser.rejected, (state)=> {
+      state.loading = false;
+    })
     .addCase(loadStoredUser.fulfilled, (state, action)=> {
       if (action.payload) {
         state.user = action.payload.user;
@@ -51,4 +54,5 @@ const authSlice = createSlice({
 })
 
 const authReducer = authSlice.reducer;
+export const {logout} = authSlice.actions
 export default authReducer;
