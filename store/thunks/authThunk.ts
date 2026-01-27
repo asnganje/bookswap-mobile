@@ -11,6 +11,13 @@ interface RegisterData {
   }
 }
 
+interface LoginData {
+  user: {
+    email:string;
+    password:string
+  }
+}
+
 export const registerUser = createAsyncThunk<
 any,
 RegisterData,
@@ -27,7 +34,11 @@ RegisterData,
   }
 )
 
-export const loginUser = createAsyncThunk(
+export const loginUser = createAsyncThunk<
+  any,
+  LoginData,
+  {rejectValue: string}
+>(
   "auth/loginUser",
   async(userData, {rejectWithValue})=> {
     try {
@@ -43,8 +54,8 @@ export const loginUser = createAsyncThunk(
 
 export const loadStoredUser = createAsyncThunk("auth/loadStoredUser", async()=> {
   try {
-    const token = await SecureStorage.getItemAsync("token")
-    const userJson = await SecureStorage.getItemAsync("user")
+    const token = await SecureStorage.getItemAsync("userToken")
+    const userJson = await SecureStorage.getItemAsync("userData")
 
     if (token && userJson) {
       return {
