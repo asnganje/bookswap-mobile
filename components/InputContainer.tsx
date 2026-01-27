@@ -3,10 +3,10 @@ import { InputProps } from "../types/input";
 import { Styles } from "../constants/colors";
 import React from "react";
 
-const InputContainer: React.FC<InputProps> = ({ style, error, ...props}) => {
+const InputContainer: React.FC<InputProps> = ({ style, invalid, error, ...props}) => {
   return(<TextInput
     {...props}
-    style={[styles.input, style, error && styles.error]}
+    style={[styles.input, style, error && styles.error, invalid && styles.invalid]}
   />)
 }
 
@@ -25,5 +25,9 @@ const styles = StyleSheet.create({
   },
   error:{
     backgroundColor:Styles.primary700
+  },
+  invalid:{
+    borderWidth:2,
+    borderColor: Styles.primary700
   }
 })
