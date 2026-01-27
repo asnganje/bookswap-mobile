@@ -3,15 +3,23 @@ import api from "../../api/client";
 import * as SecureStorage from "expo-secure-store"
 import { User } from "../../types/auth";
 
-export const registerUser = createAsyncThunk(
+interface RegisterData {
+  user: {
+    fullname: string,
+    email:string,
+    password:string
+  }
+}
+
+export const registerUser = createAsyncThunk<
+any,
+RegisterData,
+{rejectValue: string}
+>(
   "auth/registerUser",
   async(userData, {rejectWithValue})=> {
     try {
-      const response = await api.post("/users", userData, {
-        headers:{
-          "Content-Type":"multipart/form-data"
-        }
-      })
+      const response = await api.post("/users", userData)
       return response.data
     } catch (error:any ) {
       return rejectWithValue(error.response?.data?.error || "Registration failed!")
