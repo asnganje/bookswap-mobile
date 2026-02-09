@@ -14,6 +14,7 @@ import Toast from "react-native-toast-message";
 import * as SecureStore from "expo-secure-store"
 import { useSelector } from "react-redux";
 import LoadingUI from "../../components/UI/Loading";
+import Logo from "../../components/Logo";
 
 type Props = NativeStackScreenProps<AuthStackParamList, "Login">
 
@@ -81,6 +82,7 @@ function LoginScreen({navigation}: Props) {
   const formIsInvalid = !inputs.email.isValid || !inputs.password.isValid
   return(
     <View style={styles.container}>
+      <Logo />
       <Title>Sign in</Title>
       {formIsInvalid && <Text style={styles.errorText}>Invalid input data</Text>}
       <InputContainer
