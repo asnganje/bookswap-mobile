@@ -17,13 +17,13 @@ const styles = StyleSheet.create({
   container:{
     alignItems:"center",
     justifyContent:"center",
-    height:s(100),
-    width:s(100),
+    height:s(150),
+    width:s(150),
   },
   img:{
     height:"100%",
     width:"100%",
-    borderRadius:s(50)
+    borderRadius:s(75)
   },
   outerContainer:{
     width:s(300),
