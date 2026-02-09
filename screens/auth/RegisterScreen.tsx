@@ -2,7 +2,6 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { StyleSheet, Text, View } from "react-native";
 import { AuthStackParamList } from "../../app/AuthNavigator";
 import { Styles } from "../../constants/colors";
-import Title from "../../components/Title";
 import InputContainer from "../../components/InputContainer";
 import TouchableButton from "../../components/UI/TouchableButton";
 import { useState } from "react";
@@ -13,6 +12,8 @@ import { AppDispatch, RootState } from "../../store";
 import Toast from "react-native-toast-message";
 import { useSelector } from "react-redux";
 import LoadingUI from "../../components/UI/Loading";
+import AppTitle from "../../components/AppTitle";
+import Logo from "../../components/Logo";
 
 type Props = NativeStackScreenProps<AuthStackParamList, "Register">
 
@@ -86,7 +87,8 @@ function RegisterScreen({navigation}: Props) {
   }
   return(
     <View style={styles.container}>
-      <Title>Create Account</Title>
+      <Logo />
+      <AppTitle>Create Account</AppTitle>
       {formIsInvalid && <Text style={styles.errorText}>Invalid input data</Text>}
       <InputContainer
         placeholder="Full name"
