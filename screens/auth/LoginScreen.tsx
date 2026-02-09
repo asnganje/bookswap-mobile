@@ -2,7 +2,6 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { StyleSheet, Text, View } from "react-native";
 import { AuthStackParamList } from "../../app/AuthNavigator";
 import { Styles } from "../../constants/colors";
-import Title from "../../components/Title";
 import InputContainer from "../../components/InputContainer";
 import TouchableButton from "../../components/UI/TouchableButton";
 import { Ionicons } from "@expo/vector-icons";
@@ -15,6 +14,7 @@ import * as SecureStore from "expo-secure-store"
 import { useSelector } from "react-redux";
 import LoadingUI from "../../components/UI/Loading";
 import Logo from "../../components/Logo";
+import AppTitle from "../../components/AppTitle";
 
 type Props = NativeStackScreenProps<AuthStackParamList, "Login">
 
@@ -83,7 +83,7 @@ function LoginScreen({navigation}: Props) {
   return(
     <View style={styles.container}>
       <Logo />
-      <Title>Sign in</Title>
+      <AppTitle>Book Swap</AppTitle>
       {formIsInvalid && <Text style={styles.errorText}>Invalid input data</Text>}
       <InputContainer
         placeholder="Email"
