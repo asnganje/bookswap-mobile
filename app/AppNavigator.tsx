@@ -1,4 +1,3 @@
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import BooksListScreen from "../screens/books/BooksListScreen";
 import IconButton from "../components/UI/IconButton";
 import { Styles } from "../constants/colors";
@@ -12,7 +11,7 @@ import SwapScreen from "../screens/books/SwapScreen";
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { s } from "react-native-size-matters";
-import { Ionicons } from "@expo/vector-icons";
+import { useState } from "react";
 
 export type TabStackParamList = {
   BookList: undefined,
@@ -22,6 +21,10 @@ export type TabStackParamList = {
 const Tabs = createBottomTabNavigator<TabStackParamList>()
 function MainAppBottomTabsNavigator() {
   const dispatch = useDispatch<AppDispatch>()
+  const [modalVisible, setModalVisible] = useState(false)
+
+  const toggleModal = () => setModalVisible((prev)=> !prev)
+
   const logoutHandler = async () => {
     try {
       await SecureStorage.deleteItemAsync("userToken")
@@ -40,10 +43,6 @@ function MainAppBottomTabsNavigator() {
     }
   }
 
-  const modalToggleHandler = () => {
-    console.log("Void");
-    
-  }
   return(
     <Tabs.Navigator screenOptions={{
       headerLeft:({tintColor})=> (
@@ -52,7 +51,7 @@ function MainAppBottomTabsNavigator() {
         icon="add"
         color={Styles.primary200}
         style={{marginLeft:s(15)}}
-        onPress={modalToggleHandler}
+        onPress={toggleModal}
         />
       ),
       headerRight: ({tintColor}) => (
@@ -65,10 +64,19 @@ function MainAppBottomTabsNavigator() {
         />
       )
     }}>
-      <Tabs.Screen name="BookList" component={BooksListScreen} options={{
+      <Tabs.Screen name="BookList" options={{
         headerTitle:"",
         tabBarIcon:({size, color}) => <FontAwesome name="list-alt" size={size} color={color} />
-      }}/>
+      }}>
+        {
+          ()=> (
+            <BooksListScreen 
+              modalVisible={modalVisible}
+              toggleModal = {toggleModal}
+            /> 
+          )
+        }
+      </Tabs.Screen>
       <Tabs.Screen name="BookSwaps" component={SwapScreen} options={{
         headerTitle:"",
         tabBarIcon:({size, color})=> <MaterialCommunityIcons name="swap-horizontal-circle" size={30} color={color} />
