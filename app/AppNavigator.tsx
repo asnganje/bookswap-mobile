@@ -12,6 +12,7 @@ import SwapScreen from "../screens/books/SwapScreen";
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { s } from "react-native-size-matters";
+import { Ionicons } from "@expo/vector-icons";
 
 export type TabStackParamList = {
   BookList: undefined,
@@ -39,8 +40,21 @@ function MainAppBottomTabsNavigator() {
     }
   }
 
+  const modalToggleHandler = () => {
+    console.log("Void");
+    
+  }
   return(
     <Tabs.Navigator screenOptions={{
+      headerLeft:({tintColor})=> (
+        <IconButton 
+        size={35}
+        icon="add"
+        color={Styles.primary200}
+        style={{marginLeft:s(15)}}
+        onPress={modalToggleHandler}
+        />
+      ),
       headerRight: ({tintColor}) => (
         <IconButton 
           size={30}
@@ -52,9 +66,11 @@ function MainAppBottomTabsNavigator() {
       )
     }}>
       <Tabs.Screen name="BookList" component={BooksListScreen} options={{
+        headerTitle:"",
         tabBarIcon:({size, color}) => <FontAwesome name="list-alt" size={size} color={color} />
       }}/>
       <Tabs.Screen name="BookSwaps" component={SwapScreen} options={{
+        headerTitle:"",
         tabBarIcon:({size, color})=> <MaterialCommunityIcons name="swap-horizontal-circle" size={30} color={color} />
       }}/>
     </Tabs.Navigator>
