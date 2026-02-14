@@ -6,7 +6,7 @@ type IconButtonProps = {
   icon: keyof typeof Ionicons.glyphMap
   color?:string,
   style?:StyleProp<ViewStyle>,
-  onPress?:()=>{}
+  onPress?:()=> void
 }
 
 function IconButton({size, icon, color, style, onPress}: IconButtonProps) {
