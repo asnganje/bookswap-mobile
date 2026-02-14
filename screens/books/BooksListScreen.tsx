@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 import { useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
 import { useDispatch } from "react-redux";
@@ -9,10 +9,8 @@ import { Styles } from "../../constants/colors";
 import { s, vs } from "react-native-size-matters";
 import BookCard from "../../components/BookCard";
 import AppModal from "../../components/AppModal";
-import AntDesign from "@expo/vector-icons/AntDesign";
-import InputContainer from "../../components/InputContainer";
-import AppTitle from "../../components/AppTitle";
-import GenrePicker, { Genre } from "../../components/GenrePicker";
+import * as ImagePicker from "expo-image-picker"
+import AddBookForm from "../../components/AddBookForm";
 
 interface BookListProps {
   modalVisible: boolean;
@@ -21,7 +19,21 @@ interface BookListProps {
 
 function BooksListScreen({ modalVisible, toggleModal }: BookListProps) {
   const { books, loading } = useSelector((state: RootState) => state.books);
-  const [genre, setGenre] = useState<Genre | "" >("")
+  const [coverImg, setCoverImg] = useState<string | "" >("")
+
+const imagePicker = async () => {
+  const result = await ImagePicker.launchImageLibraryAsync({
+    mediaTypes: "images",
+    allowsEditing:true,
+    aspect:[3,4],
+    quality:0.8
+  })
+
+  if(!result.canceled) {
+    setCoverImg(result.assets[0].uri)
+  }
+}
+
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
@@ -46,22 +58,7 @@ function BooksListScreen({ modalVisible, toggleModal }: BookListProps) {
         renderItem={({ item }) => <BookCard item={item} />}
       />
       <AppModal modalVisible={modalVisible}>
-        <AppTitle>Add a Book</AppTitle>
-        <InputContainer 
-          placeholder="Title"
-          placeholderTextColor={Styles.primary300}
-        />
-        <InputContainer 
-          placeholder="Author"
-          placeholderTextColor={Styles.primary300}
-        />
-        <GenrePicker value={genre} onChange={setGenre}/>
-        <AntDesign
-          name="close"
-          size={24}
-          color={Styles.primary200}
-          onPress={toggleModal}
-        />
+        <AddBookForm coverImg={coverImg} toggleModal={toggleModal} imagePicker={imagePicker}/>
       </AppModal>
     </View>
   );
@@ -72,5 +69,5 @@ export default BooksListScreen;
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: s(15),
-  },
+  }
 });
