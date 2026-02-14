@@ -2,5 +2,5 @@ import { TextInputProps } from "react-native";
 
 export interface InputProps extends TextInputProps {
   error?: boolean,
-  invalid: boolean
+  invalid?: boolean
 }
