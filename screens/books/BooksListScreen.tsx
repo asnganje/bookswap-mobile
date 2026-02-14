@@ -9,16 +9,28 @@ import { Styles } from "../../constants/colors";
 import { s, vs } from "react-native-size-matters";
 import BookCard from "../../components/BookCard";
 import AppModal from "../../components/AppModal";
-import AntDesign from '@expo/vector-icons/AntDesign';
+import AntDesign from "@expo/vector-icons/AntDesign";
+import InputContainer from "../../components/InputContainer";
+
+const GENRES = [
+  "Technology",
+  "Science",
+  "Business",
+  "Fiction",
+  "Romantic",
+  "Action",
+  "Academic",
+  "Others"
+]
 
 interface BookListProps {
-  modalVisible: boolean
-  toggleModal: ()=> void
+  modalVisible: boolean;
+  toggleModal: () => void;
 }
 
-function BooksListScreen ({modalVisible, toggleModal}: BookListProps) {
+function BooksListScreen({ modalVisible, toggleModal }: BookListProps) {
   const { books, loading } = useSelector((state: RootState) => state.books);
-  
+
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
@@ -33,19 +45,31 @@ function BooksListScreen ({modalVisible, toggleModal}: BookListProps) {
     <View style={styles.container}>
       <FlatList
         contentContainerStyle={{
-          alignItems:"center",
-          justifyContent:"center",
-          rowGap:s(25),
-          paddingVertical:vs(20)
-        }
-        }
+          alignItems: "center",
+          justifyContent: "center",
+          rowGap: s(25),
+          paddingVertical: vs(20),
+        }}
         data={books}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => <BookCard item={item} />}
       />
       <AppModal modalVisible={modalVisible}>
         <Text>Add a Book</Text>
-        <AntDesign name="close" size={24} color={Styles.primary200} onPress={toggleModal} />
+        <InputContainer 
+          placeholder="Title"
+          placeholderTextColor={Styles.primary300}
+        />
+        <InputContainer 
+          placeholder="Author"
+          placeholderTextColor={Styles.primary300}
+        />
+        <AntDesign
+          name="close"
+          size={24}
+          color={Styles.primary200}
+          onPress={toggleModal}
+        />
       </AppModal>
     </View>
   );
