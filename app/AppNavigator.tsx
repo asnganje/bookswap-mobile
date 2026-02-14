@@ -1,7 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import BookDetailsScreen from "../screens/books/BookDetailsScreen";
 import BooksListScreen from "../screens/books/BooksListScreen";
-import AddBooksScreen from "../screens/books/AddBookScreen";
 import IconButton from "../components/UI/IconButton";
 import { Styles } from "../constants/colors";
 import * as SecureStorage from "expo-secure-store"
@@ -10,6 +8,7 @@ import { AppDispatch } from "../store";
 import { logout } from "../store/slices/authSlice";
 import Toast from "react-native-toast-message";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import SwapScreen from "../screens/books/SwapScreen";
 
 
 const Tabs = createBottomTabNavigator()
@@ -45,8 +44,7 @@ function MainAppBottomTabsNavigator() {
       )
     }}>
       <Tabs.Screen name="BookList" component={BooksListScreen}/>
-      <Tabs.Screen name="BookDetails" component={BookDetailsScreen}/>
-      <Tabs.Screen name="AddBook" component={AddBooksScreen}/>
+      <Tabs.Screen name="BookSwaps" component={SwapScreen}/>
     </Tabs.Navigator>
   )
 }
