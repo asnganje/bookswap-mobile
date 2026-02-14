@@ -9,6 +9,8 @@ import { logout } from "../store/slices/authSlice";
 import Toast from "react-native-toast-message";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import SwapScreen from "../screens/books/SwapScreen";
+import FontAwesome from '@expo/vector-icons/FontAwesome';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 
 const Tabs = createBottomTabNavigator()
@@ -43,8 +45,12 @@ function MainAppBottomTabsNavigator() {
         />
       )
     }}>
-      <Tabs.Screen name="BookList" component={BooksListScreen}/>
-      <Tabs.Screen name="BookSwaps" component={SwapScreen}/>
+      <Tabs.Screen name="BookList" component={BooksListScreen} options={{
+        tabBarIcon:({size, color}) => <FontAwesome name="list-alt" size={size} color={color} />
+      }}/>
+      <Tabs.Screen name="BookSwaps" component={SwapScreen} options={{
+        tabBarIcon:({size, color})=> <MaterialCommunityIcons name="swap-horizontal-circle" size={30} color={color} />
+      }}/>
     </Tabs.Navigator>
   )
 }
