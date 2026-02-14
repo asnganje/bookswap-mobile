@@ -9,10 +9,11 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../store";
 import { logout } from "../store/slices/authSlice";
 import Toast from "react-native-toast-message";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 
-const Stack = createNativeStackNavigator()
-function AppNavigator() {
+const Tabs = createBottomTabNavigator()
+function MainAppBottomTabsNavigator() {
   const dispatch = useDispatch<AppDispatch>()
   const logoutHandler = async () => {
     try {
@@ -33,7 +34,7 @@ function AppNavigator() {
   }
 
   return(
-    <Stack.Navigator screenOptions={{
+    <Tabs.Navigator screenOptions={{
       headerRight: ({tintColor}) => (
         <IconButton 
           size={30}
@@ -43,11 +44,11 @@ function AppNavigator() {
         />
       )
     }}>
-      <Stack.Screen name="BookList" component={BooksListScreen}/>
-      <Stack.Screen name="BookDetails" component={BookDetailsScreen}/>
-      <Stack.Screen name="AddBook" component={AddBooksScreen}/>
-    </Stack.Navigator>
+      <Tabs.Screen name="BookList" component={BooksListScreen}/>
+      <Tabs.Screen name="BookDetails" component={BookDetailsScreen}/>
+      <Tabs.Screen name="AddBook" component={AddBooksScreen}/>
+    </Tabs.Navigator>
   )
 }
 
-export default AppNavigator;
+export default MainAppBottomTabsNavigator;

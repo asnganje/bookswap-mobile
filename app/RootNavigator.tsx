@@ -1,6 +1,5 @@
 import { useSelector } from 'react-redux';
 import { AppDispatch, RootState } from "../store";
-import AppNavigator from "./AppNavigator";
 import AuthNavigator from "./AuthNavigator";
 import { NavigationContainer } from "@react-navigation/native";
 import { useDispatch } from 'react-redux';
@@ -9,6 +8,7 @@ import { loadStoredUser } from '../store/thunks/authThunk';
 import LoadingUI from '../components/UI/Loading';
 import { Styles } from '../constants/colors';
 import { View } from 'react-native';
+import MainAppBottomTabsNavigator from './AppNavigator';
 
 
 function RootNavigator() {
@@ -34,7 +34,7 @@ function RootNavigator() {
 
   return (
     <NavigationContainer>
-      { token ? <AppNavigator /> : <AuthNavigator/> }
+      { token ? <MainAppBottomTabsNavigator /> : <AuthNavigator/> }
     </NavigationContainer>
   )  
 }
