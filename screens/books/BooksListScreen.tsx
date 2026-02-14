@@ -8,8 +8,15 @@ import LoadingUI from "../../components/UI/LoadingUI";
 import { Styles } from "../../constants/colors";
 import { s, vs } from "react-native-size-matters";
 import BookCard from "../../components/BookCard";
+import AppModal from "../../components/AppModal";
+import AntDesign from '@expo/vector-icons/AntDesign';
 
-function BooksListScreen() {
+interface BookListProps {
+  modalVisible: boolean
+  toggleModal: ()=> void
+}
+
+function BooksListScreen ({modalVisible, toggleModal}: BookListProps) {
   const { books, loading } = useSelector((state: RootState) => state.books);
   
   const dispatch = useDispatch<AppDispatch>();
@@ -36,6 +43,10 @@ function BooksListScreen() {
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => <BookCard item={item} />}
       />
+      <AppModal modalVisible={modalVisible}>
+        <Text>Add a Book</Text>
+        <AntDesign name="close" size={24} color={Styles.primary200} onPress={toggleModal} />
+      </AppModal>
     </View>
   );
 }
