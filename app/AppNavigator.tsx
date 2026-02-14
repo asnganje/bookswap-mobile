@@ -12,8 +12,12 @@ import SwapScreen from "../screens/books/SwapScreen";
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
+export type TabStackParamList = {
+  BookList: undefined,
+  BookSwaps: undefined
+}
 
-const Tabs = createBottomTabNavigator()
+const Tabs = createBottomTabNavigator<TabStackParamList>()
 function MainAppBottomTabsNavigator() {
   const dispatch = useDispatch<AppDispatch>()
   const logoutHandler = async () => {
