@@ -11,6 +11,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import SwapScreen from "../screens/books/SwapScreen";
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import { s } from "react-native-size-matters";
 
 export type TabStackParamList = {
   BookList: undefined,
@@ -44,6 +45,7 @@ function MainAppBottomTabsNavigator() {
         <IconButton 
           size={30}
           icon="log-out"
+          style={{marginRight:s(15)}}
           color={Styles.primary800}
           onPress={logoutHandler}
         />
