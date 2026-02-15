@@ -1,18 +1,15 @@
 import { createAsyncThunk, isRejectedWithValue } from "@reduxjs/toolkit";
 import api from "../../api/client";
 
-
 export const createBook = createAsyncThunk(
   "books/createBook",
-  async (formData: FormData, {rejectWithValue})=>{
+  async (payload: FormData, {rejectWithValue})=>{
+    
     try {
-      const response = await api.post("/books", formData, {
-        headers:{
-          "Content-Type": "multipart/form-data"
-        }
-      })
+      const response = await api.post("/books", payload)
       return response.data
     } catch (error: any) {
+      console.log(error)
       return rejectWithValue(error.response?.data)
     }
   }
