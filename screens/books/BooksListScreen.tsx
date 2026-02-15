@@ -58,7 +58,7 @@ const imagePicker = async () => {
         renderItem={({ item }) => <BookCard item={item} />}
       />
       <AppModal modalVisible={modalVisible}>
-        <AddBookForm coverImg={coverImg} toggleModal={toggleModal} imagePicker={imagePicker}/>
+        <AddBookForm coverImg={coverImg} setCoverImg={setCoverImg} toggleModal={toggleModal} imagePicker={imagePicker}/>
       </AppModal>
     </View>
   );
