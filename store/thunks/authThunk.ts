@@ -28,7 +28,7 @@ RegisterData,
     try {
       const response = await api.post("/users", userData)
       return response.data
-    } catch (error:any ) {
+    } catch (error:any ) {     
       return rejectWithValue(error.response?.data?.error || "Registration failed!")
     }
   }
@@ -40,10 +40,10 @@ export const loginUser = createAsyncThunk<
   {rejectValue: string}
 >(
   "auth/loginUser",
-  async(userData, {rejectWithValue})=> {
+  async(userData: LoginData, {rejectWithValue})=> {   
     try {
-      const response = await api.post("users/sign_in", userData)
-      await SecureStorage.setItemAsync("token", response.data.token)
+      const response = await api.post("/users/sign_in", userData)
+      await SecureStorage.setItemAsync("userToken", response.data.token)
       await SecureStorage.setItemAsync("user", JSON.stringify(response.data.user))
       return response.data
     } catch (error: any) {
