@@ -2,15 +2,14 @@ import axios from "axios"
 import * as SecureStorage from "expo-secure-store"
 
 const api = axios.create({
-  // baseURL: "http://localhost:3000/api/v1",
   baseURL: "https://bookswap-backend-production-3175.up.railway.app/api/v1",
-  headers:{
-    Accept: "application/json"
+  headers: {
+    'Content-Type': 'multipart/form-data',
   },
 })
 
 api.interceptors.request.use(async (config)=> {
-  const token = await SecureStorage.getItemAsync("token")
+  const token = await SecureStorage.getItemAsync("userToken")  
   if (token) {
     config.headers.Authorization = `Bearer ${token}`
   }
