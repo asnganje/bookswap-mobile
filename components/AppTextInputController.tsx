@@ -7,7 +7,7 @@ import AppTextInput from './AppTextInput'
 interface AppTextInputControllerProps<T extends FieldValues> {
   control:Control<T>,
   name: Path<T>,
-  rules: object,
+  rules?: object,
   keyboardType:"default"|"numeric"|"email-address",
   placeholder:string,
   placeholderTextColor:string
